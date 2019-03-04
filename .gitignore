@@ -1,0 +1,5 @@
+.vscode
+data/*
+!data/snodecoin.conf
+!data/.gitkeep
+docs
