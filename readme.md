@@ -21,7 +21,7 @@ SNODE Donations: `SaQpqmT2nimD8jLPZwfx3eL9B4jWmvqyWx`
    - `wget https://github.com/cryon-io/ans/archive/master.zip && unzip -o master.zip && mv ./ans-master [path] && cd [path] && chmod +x ./ans`
 2. one of commands below depending of your preference (run as *root* or use *sudo*)
     - `./ans --full --node=SNODE_MN` # full setup of SNODE MN for current user
-    - `./ans --full --user=[user] --node=SNODE_MN --auto-update-level=[level] -sp=ip=[external ip] -sp=port=[port number] -sp=nodeprivkey=[MN privkey]` 
+    - `./ans --full --user=[user] --node=SNODE_MN --auto-update-level=[level] -sp=ip=[external ip] -sp=nodeprivkey=[MN privkey]` 
         * full setup of SNODE COIN MN for defined user (directory location and structure is preserved) sets specified auto update level (Refer to Auto updates)
         * Do not forget to set master node **external ip** and **privkey**. This is required only first time.
 3.  logout, login and check node status

@@ -25,21 +25,8 @@ VALUE=$(echo "$1" | sed "s/[^>]*=//")
 
 case $PARAM in
     ip)
-        PORT=$(grep "externalip=" "$BASEDIR/../data/snodecoin.conf" | sed 's/externalip=//g' | sed 's/^.*://g')
-        TEMP=$(sed "s/externalip=.*/externalip=$VALUE:$PORT/g" "$BASEDIR/../data/snodecoin.conf")
+        TEMP=$(sed "s/externalip=.*/externalip=$VALUE:18988/g" "$BASEDIR/../data/snodecoin.conf")
         printf "%s" "$TEMP" > "$BASEDIR/../data/snodecoin.conf"
-    ;;
-    port)
-        ADDR=$(grep "externalip=" "$BASEDIR/../data/snodecoin.conf" | sed 's/externalip=//g')
-        PORT=$(printf "%s" "$ADDR" | sed 's/^.*://g')
-        IP=$(printf "%s" "$ADDR" | sed "s/:$PORT$//g")
-
-        TEMP=$(sed "s/externalip=.*/externalip=$IP:$VALUE/g" "$BASEDIR/../data/snodecoin.conf")
-        # TEMP=$(printf "%s" "$TEMP" | sed "s/port=.*/port=$VALUE/g")
-        printf "%s" "$TEMP" > "$BASEDIR/../data/snodecoin.conf"
-
-        NEW_COMPOSE=$(sed "s/- \".*:8175\"/- \"$VALUE:8175\"/g" "$BASEDIR/../docker-compose.yml")
-        printf "%s" "$NEW_COMPOSE" > "$BASEDIR/../data/docker-compose.yml"
     ;;
     nodeprivkey)
         TEMP=$(sed "s/masternodeprivkey=.*/masternodeprivkey=$VALUE/g" "$BASEDIR/../data/snodecoin.conf")
