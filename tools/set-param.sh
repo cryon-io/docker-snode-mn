@@ -25,7 +25,15 @@ VALUE=$(echo "$1" | sed "s/[^>]*=//")
 
 case $PARAM in
     ip)
-        TEMP=$(sed "s/externalip=.*/externalip=$VALUE:18988/g" "$BASEDIR/../data/snodecoin.conf")
+        #TEMP=$(sed "s/externalip=.*/externalip=$VALUE:18988/g" "$BASEDIR/../data/snodecoin.conf")
+        case $VALUE in 
+            *:*)
+                TEMP=$(sed "s/externalip=.*/externalip=[$VALUE]:18988/g" "$BASEDIR/../data/snodecoin.conf")
+            ;;
+            *)
+                TEMP=$(sed "s/externalip=.*/externalip=$VALUE:18988/g" "$BASEDIR/../data/snodecoin.conf")
+            ;;
+        esac
         printf "%s" "$TEMP" > "$BASEDIR/../data/snodecoin.conf"
     ;;
     nodeprivkey)
